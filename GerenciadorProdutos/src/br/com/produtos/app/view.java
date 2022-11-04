@@ -30,6 +30,7 @@ public class view extends JFrame {
 	private JTable tabelaProdutos;
 	private JButton btnListar;
 	private JScrollPane scrollPane;
+	private JTextField txtCodigo;
 	/**
 	 * Launch the application.
 	 */
@@ -56,43 +57,36 @@ public class view extends JFrame {
 		getContentPane().setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Nome do Produto:");
-		lblNewLabel.setBounds(10, 11, 130, 14);
+		lblNewLabel.setBounds(10, 67, 130, 14);
 		getContentPane().add(lblNewLabel);
 		
 		txtNome = new JTextField();
-		txtNome.setBounds(10, 36, 265, 20);
+		txtNome.setBounds(10, 92, 265, 20);
 		getContentPane().add(txtNome);
 		txtNome.setColumns(10);
 		
 		JLabel lblNewLabel_1 = new JLabel("Fornecedor:");
-		lblNewLabel_1.setBounds(10, 67, 86, 14);
+		lblNewLabel_1.setBounds(10, 123, 86, 14);
 		getContentPane().add(lblNewLabel_1);
 		
 		txtFornecedor = new JTextField();
-		txtFornecedor.setBounds(10, 92, 265, 20);
+		txtFornecedor.setBounds(10, 148, 265, 20);
 		getContentPane().add(txtFornecedor);
 		txtFornecedor.setColumns(10);
 		
 		JButton btnCadastrar = new JButton("Cadastrar");
 		btnCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String pnome, pfornecedor;
-				pnome = txtNome.getText();
-				pfornecedor = txtFornecedor.getText();
-				
-				Produto objproduto = new Produto();
-				objproduto.setNome(pnome);
-				objproduto.setFornecedor(pfornecedor);
-				
-				ProdutoDAO objprodutodao = new ProdutoDAO();
-				objprodutodao.cadastrarProduto(objproduto);
+				CadastrarProdutos();
+				CarregarCampos();
+				LimparCampos();
 			}
 		});
-		btnCadastrar.setBounds(10, 123, 105, 23);
+		btnCadastrar.setBounds(10, 179, 105, 23);
 		getContentPane().add(btnCadastrar);
 		
 		scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 157, 564, 195);
+		scrollPane.setBounds(10, 213, 564, 195);
 		getContentPane().add(scrollPane);
 		
 		tabelaProdutos = new JTable();
@@ -108,15 +102,63 @@ public class view extends JFrame {
 		btnListar = new JButton("Listar Produtos");
 		btnListar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				listarValores();
+				ListarValores();
 			}
 		});
-		btnListar.setBounds(125, 123, 124, 23);
+		btnListar.setBounds(125, 179, 124, 23);
 		getContentPane().add(btnListar);
+		
+		JLabel lblNewLabel_2 = new JLabel("Código:");
+		lblNewLabel_2.setBounds(10, 11, 46, 14);
+		getContentPane().add(lblNewLabel_2);
+		
+		txtCodigo = new JTextField();
+		txtCodigo.setBounds(10, 36, 86, 20);
+		getContentPane().add(txtCodigo);
+		txtCodigo.setColumns(10);
+		
+		JButton btnCarregar = new JButton("Carregar Campos");
+		btnCarregar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CarregarCampos();
+				ListarValores();
+			}
+		});
+		btnCarregar.setBounds(10, 419, 148, 23);
+		getContentPane().add(btnCarregar);
 
 	}
 	
-	private void listarValores() {
+	private void LimparCampos() {
+		txtCodigo.setText("");
+		txtNome.setText("");
+		txtFornecedor.setText("");
+		txtNome.requestFocus();
+	}
+	
+	private void CadastrarProdutos() {
+		String pnome, pfornecedor;
+		pnome = txtNome.getText();
+		pfornecedor = txtFornecedor.getText();
+		
+		Produto objproduto = new Produto();
+		objproduto.setNome(pnome);
+		objproduto.setFornecedor(pfornecedor);
+		
+		ProdutoDAO objprodutodao = new ProdutoDAO();
+		objprodutodao.cadastrarProduto(objproduto);
+		
+	}
+	
+	private void CarregarCampos() {
+		int set = tabelaProdutos.getSelectedRow();
+		
+		txtCodigo.setText(tabelaProdutos.getModel().getValueAt(set, 0).toString());
+		txtNome.setText(tabelaProdutos.getModel().getValueAt(set, 1).toString());
+		txtFornecedor.setText(tabelaProdutos.getModel().getValueAt(set, 2).toString());
+	}
+	
+	private void ListarValores() {
 		try {
 			ProdutoDAO objprodutodao = new ProdutoDAO();
 			

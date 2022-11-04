@@ -30,7 +30,7 @@ public class ProdutoDAO {
 			pstm.execute();
 			pstm.close();
 			
-		} catch (Exception erro) {
+		} catch (SQLException erro) {
 			JOptionPane.showMessageDialog(null, "ProdutoDAO Cadastrar" + erro);
 		}
 		JOptionPane.showMessageDialog(null, "Item cadastrado com sucesso!");
