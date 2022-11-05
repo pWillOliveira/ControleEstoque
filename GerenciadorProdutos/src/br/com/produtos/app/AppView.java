@@ -27,7 +27,7 @@ import java.awt.Color;
 import java.awt.Font;
 import javax.swing.UIManager;
 
-public class view extends JFrame {
+public class AppView extends JFrame {
 
 	/**
 	 * Autor William Oliveira
@@ -50,23 +50,8 @@ public class view extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					// Criando o Timer para atualização da hora em tempo real.
-					Timer timer = new Timer();
-					final long s = (1000);
-					TimerTask tarefa = new TimerTask() {
-						@Override
-						public void run() {
-							Data hora = new Data(new Date());
-							Data data = new Data(new Date());
-							lblData.setText(data.getData());
-							lblHora.setText(hora.getHora());
-						}
-					};
-					timer.scheduleAtFixedRate(tarefa, s, s);
-
-					view frame = new view();
+					AppView frame = new AppView();
 					frame.setVisible(true);
-					ListarValores();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -77,7 +62,7 @@ public class view extends JFrame {
 	/**
 	 * Cria o Frame.
 	 */
-	public view() {
+	public AppView() {
 		setTitle("Controle de Estoque");
 		setAutoRequestFocus(false);
 		setBounds(100, 100, 600, 500);
@@ -100,6 +85,20 @@ public class view extends JFrame {
 		lblHora.setForeground(new Color(0, 0, 128));
 		lblHora.setBounds(515, 11, 59, 14);
 		getContentPane().add(lblHora);
+
+		// Criando o Timer para atualização da hora em tempo real.
+		Timer timer = new Timer();
+		final long s = (1000);
+		TimerTask tarefa = new TimerTask() {
+			@Override
+			public void run() {
+				Data hora = new Data(new Date());
+				Data data = new Data(new Date());
+				lblData.setText(data.getData());
+				lblHora.setText(hora.getHora());
+			}
+		};
+		timer.scheduleAtFixedRate(tarefa, s, s);
 
 		// Demais Labels
 		JLabel lblNewLabel = new JLabel("Nome do Produto:");
@@ -215,6 +214,7 @@ public class view extends JFrame {
 		});
 		btnDeletar.setBounds(224, 179, 89, 23);
 		getContentPane().add(btnDeletar);
+		ListarValores();
 
 	}
 
