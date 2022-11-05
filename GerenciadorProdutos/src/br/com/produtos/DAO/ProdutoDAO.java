@@ -18,8 +18,7 @@ public class ProdutoDAO {
 	ArrayList<Produto> lista = new ArrayList<>();
 	
 	public void cadastrarProduto(Produto objproduto) {
-		String query = "insert into produtos (nomeprodutos, fornecedorprodutos) values (?,?)";
-		
+		String query = "insert into produtos (nomeprodutos, fornecedorprodutos) values (?,?)";	
 		conn = new ConexaoDAO().conectaBD();
 		
 		try {
@@ -34,7 +33,7 @@ public class ProdutoDAO {
 		} catch (SQLException erro) {
 			JOptionPane.showMessageDialog(null, "ProdutoDAO Cadastrar" + erro);
 		}
-		JOptionPane.showMessageDialog(null, "Item cadastrado com sucesso!");
+		JOptionPane.showMessageDialog(null, "Produto cadastrado com sucesso!", "Cadastrar", JOptionPane.INFORMATION_MESSAGE);
 	}
 	
 	public  ArrayList<Produto> PesquisarProduto(){
@@ -59,5 +58,26 @@ public class ProdutoDAO {
 		return lista;
 		
 	}
+	
+	public void alterarProduto(Produto objproduto) {
+		String query = "update produtos set nomeprodutos = ?, fornecedorprodutos = ? where idprodutos = ?";
+		conn = new ConexaoDAO().conectaBD();
+		
+			try {
+			
+				pstm = conn.prepareStatement(query);
+				pstm.setString(1, objproduto.getNome());
+				pstm.setString(2, objproduto.getFornecedor());
+				pstm.setInt(3, objproduto.getIdproduto());
+			
+				pstm.execute();
+				pstm.close();
+			
+			} catch (SQLException erro) {
+				JOptionPane.showMessageDialog(null, "ProdutoDAO Alterar" + erro);
+			}
+			JOptionPane.showMessageDialog(null, "Item alterado com sucesso!");
+		}
+	}
 
-}
+

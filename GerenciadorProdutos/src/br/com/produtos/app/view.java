@@ -80,8 +80,14 @@ public class view extends JFrame {
 		JButton btnCadastrar = new JButton("Cadastrar");
 		btnCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				CadastrarProdutos();
-				CarregarCampos();
+				if(txtNome.getText() == null || txtNome.getText().trim().equals("") || txtFornecedor.getText() == null || txtFornecedor.getText().trim().equals("")) {
+					JOptionPane.showMessageDialog(null, "Nome do Produto e Fornecedor devem ser preenchidos", "Erro ao Cadastrar", JOptionPane.ERROR_MESSAGE);
+					
+				}else{
+					CadastrarProdutos();
+					ListarValores();
+					LimparCampos();
+				}
 			}
 		});
 		btnCadastrar.setBounds(10, 179, 105, 23);
@@ -101,10 +107,10 @@ public class view extends JFrame {
 		));
 		scrollPane.setViewportView(tabelaProdutos);
 		
-		btnListar = new JButton("Listar Produtos");
+		btnListar = new JButton("Limpar Campos");
 		btnListar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ListarValores();
+				LimparCampos();
 			}
 		});
 		btnListar.setBounds(125, 179, 124, 23);
@@ -115,6 +121,7 @@ public class view extends JFrame {
 		getContentPane().add(lblNewLabel_2);
 		
 		txtCodigo = new JTextField();
+		txtCodigo.setEditable(false);
 		txtCodigo.setBounds(10, 36, 86, 20);
 		getContentPane().add(txtCodigo);
 		txtCodigo.setColumns(10);
@@ -122,16 +129,34 @@ public class view extends JFrame {
 		JButton btnCarregar = new JButton("Carregar Campos");
 		btnCarregar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				CarregarCampos();
-				ListarValores();
+				if(tabelaProdutos.getSelectedRow() == -1) {
+					JOptionPane.showMessageDialog(null, "Selecione uma linha na tabela para carregar os valores.", "Erro ao Carregar Campos", JOptionPane.ERROR_MESSAGE);
+				}else{
+					CarregarCampos();
+					ListarValores();
+				}
 			}
 		});
 		btnCarregar.setBounds(10, 419, 148, 23);
 		getContentPane().add(btnCarregar);
 		
 		JButton btnAlterar = new JButton("Alterar");
+		btnAlterar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(txtCodigo.getText() == null || txtCodigo.getText().trim().equals("")) {
+					JOptionPane.showMessageDialog(null, "Carregue os campos antes para alterar um produto.", "Erro ao Alterar", JOptionPane.ERROR_MESSAGE);
+					
+				}else{
+					AlterarProduto();
+					ListarValores();
+					LimparCampos();
+				}
+			}
+			
+		});
 		btnAlterar.setBounds(259, 179, 89, 23);
 		getContentPane().add(btnAlterar);
+					
 		
 		
 		
@@ -141,6 +166,20 @@ public class view extends JFrame {
 	 * Metodos dos botões.
 	 */
 	private void AlterarProduto() {
+		int idprodutos;
+		String nomeprodutos, fornecedorprodutos;
+		
+		idprodutos = Integer.parseInt(txtCodigo.getText());
+		nomeprodutos = txtNome.getText();
+		fornecedorprodutos = txtFornecedor.getText();
+		
+		Produto objproduto = new Produto();
+		objproduto.setIdproduto(idprodutos);
+		objproduto.setNome(nomeprodutos);
+		objproduto.setFornecedor(fornecedorprodutos);
+		
+		ProdutoDAO objprodutodao = new ProdutoDAO();
+		objprodutodao.alterarProduto(objproduto);
 		
 	}
 	
