@@ -1,7 +1,7 @@
 package br.com.produtos.model;
 
 public class Produto {
-	
+
 	private String nome, fornecedor;
 	private int idproduto;
 
@@ -28,7 +28,5 @@ public class Produto {
 	public void setIdproduto(int idproduto) {
 		this.idproduto = idproduto;
 	}
-	
-	
 
 }
