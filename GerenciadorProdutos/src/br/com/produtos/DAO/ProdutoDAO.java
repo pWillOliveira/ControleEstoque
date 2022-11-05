@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import br.com.produtos.model.Produto;
 
+//Classe de conexão com o MySQL
 public class ProdutoDAO {
 	
 	Connection conn;
@@ -36,7 +37,7 @@ public class ProdutoDAO {
 		JOptionPane.showMessageDialog(null, "Item cadastrado com sucesso!");
 	}
 	
-	public ArrayList<Produto> PesquisarProduto(){
+	public  ArrayList<Produto> PesquisarProduto(){
 		String query = "select * from produtos";
 		conn = new ConexaoDAO().conectaBD();
 		

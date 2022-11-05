@@ -14,6 +14,7 @@ import br.com.produtos.model.Produto;
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JTable;
@@ -22,17 +23,17 @@ import javax.swing.JScrollPane;
 public class view extends JFrame {
 
 	/**
-	 * 
+	 * Autor William Oliveira
 	 */
 	private static final long serialVersionUID = 1L;
 	private JTextField txtNome;
 	private JTextField txtFornecedor;
-	private JTable tabelaProdutos;
+	private static JTable tabelaProdutos;
 	private JButton btnListar;
 	private JScrollPane scrollPane;
 	private JTextField txtCodigo;
 	/**
-	 * Launch the application.
+	 * Executa a aplicação.
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -40,6 +41,7 @@ public class view extends JFrame {
 				try {
 					view frame = new view();
 					frame.setVisible(true);
+					ListarValores();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -48,9 +50,10 @@ public class view extends JFrame {
 	}
 
 	/**
-	 * Create the frame.
+	 * Cria o Frame.
 	 */
 	public view() {
+		setTitle("Controle de Estoque");
 		setAutoRequestFocus(false);
 		setBounds(100, 100, 600, 500);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -79,7 +82,6 @@ public class view extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				CadastrarProdutos();
 				CarregarCampos();
-				LimparCampos();
 			}
 		});
 		btnCadastrar.setBounds(10, 179, 105, 23);
@@ -126,7 +128,20 @@ public class view extends JFrame {
 		});
 		btnCarregar.setBounds(10, 419, 148, 23);
 		getContentPane().add(btnCarregar);
+		
+		JButton btnAlterar = new JButton("Alterar");
+		btnAlterar.setBounds(259, 179, 89, 23);
+		getContentPane().add(btnAlterar);
+		
+		
+		
 
+	}
+	/**
+	 * Metodos dos botões.
+	 */
+	private void AlterarProduto() {
+		
 	}
 	
 	private void LimparCampos() {
@@ -147,6 +162,8 @@ public class view extends JFrame {
 		
 		ProdutoDAO objprodutodao = new ProdutoDAO();
 		objprodutodao.cadastrarProduto(objproduto);
+		LimparCampos();
+		ListarValores();
 		
 	}
 	
@@ -158,7 +175,7 @@ public class view extends JFrame {
 		txtFornecedor.setText(tabelaProdutos.getModel().getValueAt(set, 2).toString());
 	}
 	
-	private void ListarValores() {
+	private static void ListarValores() {
 		try {
 			ProdutoDAO objprodutodao = new ProdutoDAO();
 			
