@@ -1,4 +1,4 @@
-package br.com.produtos.app;
+package br.com.produtos.appview;
 
 import java.awt.EventQueue;
 
@@ -9,7 +9,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
-import br.com.produtos.DAO.ProdutoDAO;
+import br.com.produtos.dao.ProdutoDAO;
 import br.com.produtos.model.Data;
 import br.com.produtos.model.Produto;
 

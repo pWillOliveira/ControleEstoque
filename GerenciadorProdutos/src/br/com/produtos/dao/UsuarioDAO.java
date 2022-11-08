@@ -1,4 +1,4 @@
-package br.com.produtos.DAO;
+package br.com.produtos.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

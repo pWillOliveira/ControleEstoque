@@ -1,4 +1,4 @@
-package br.com.produtos.app;
+package br.com.produtos.appview;
 
 import java.awt.EventQueue;
 
@@ -6,7 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import br.com.produtos.DAO.UsuarioDAO;
+import br.com.produtos.dao.UsuarioDAO;
 import br.com.produtos.model.Usuario;
 
 import javax.swing.JLabel;
@@ -47,6 +47,7 @@ public class LoginView extends JFrame {
 	 * Cria o JFrame de Login.
 	 */
 	public LoginView() {
+		setTitle("Sistema de Controle de Estoque - Versão 1.0");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
