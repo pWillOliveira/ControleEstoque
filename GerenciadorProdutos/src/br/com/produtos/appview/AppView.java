@@ -100,7 +100,7 @@ public class AppView extends JFrame {
 		};
 		timer.scheduleAtFixedRate(tarefa, s, s);
 
-		// Demais Labels
+		// Demais Labels e Botões
 		JLabel lblNewLabel = new JLabel("Nome do Produto:");
 		lblNewLabel.setBounds(10, 67, 130, 14);
 		getContentPane().add(lblNewLabel);

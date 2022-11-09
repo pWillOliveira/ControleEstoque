@@ -18,7 +18,7 @@ public class ProdutoDAO {
 	ArrayList<Produto> lista = new ArrayList<>();
 
 	public void cadastrarProduto(Produto objproduto) {
-		String query = "insert into produtos (nomeprodutos, fornecedorprodutos) values (?,?)";
+		final String query = "insert into produtos (nomeprodutos, fornecedorprodutos) values (?,?)";
 		conn = new ConexaoDAO().conectaBD();
 
 		try {
@@ -38,7 +38,7 @@ public class ProdutoDAO {
 	}
 
 	public ArrayList<Produto> pesquisarProduto() {
-		String query = "select * from produtos";
+		final String query = "select * from produtos";
 		conn = new ConexaoDAO().conectaBD();
 
 		try {
@@ -61,7 +61,7 @@ public class ProdutoDAO {
 	}
 
 	public void alterarProduto(Produto objproduto) {
-		String query = "update produtos set nomeprodutos = ?, fornecedorprodutos = ? where idprodutos = ?";
+		final String query = "update produtos set nomeprodutos = ?, fornecedorprodutos = ? where idprodutos = ?";
 		conn = new ConexaoDAO().conectaBD();
 
 		try {
@@ -82,7 +82,7 @@ public class ProdutoDAO {
 	}
 
 	public void deletarProduto(Produto objproduto) {
-		String query = "delete from produtos where idprodutos = ?";
+		final String query = "delete from produtos where idprodutos = ?";
 		conn = new ConexaoDAO().conectaBD();
 
 		try {

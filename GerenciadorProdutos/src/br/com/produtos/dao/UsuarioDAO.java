@@ -17,7 +17,7 @@ public class UsuarioDAO {
 		conn = new ConexaoDAO().conectaBD();
 
 		try {
-			String query = "select * from usuario where nomeusuario = ? and senhausuario = ?";
+			final String query = "select * from usuario where nomeusuario = ? and senhausuario = ?";
 			PreparedStatement pstm = conn.prepareStatement(query);
 			pstm.setString(1, objusuario.getNomeUsuario());
 			pstm.setString(2, objusuario.getSenhaUsuario());

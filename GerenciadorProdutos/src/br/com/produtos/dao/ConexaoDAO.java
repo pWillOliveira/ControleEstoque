@@ -12,10 +12,10 @@ public class ConexaoDAO {
 		Connection conn = null;
 
 		try {
-			String url = "jdbc:mysql://localhost:3306/";
-			String schema = "dbprodutos";
-			String user = "root";
-			String password = "root";
+			final String url = "jdbc:mysql://localhost:3306/";
+			final String schema = "dbprodutos";
+			final String user = "root";
+			final String password = "root";
 
 			conn = DriverManager.getConnection(url + schema + "?user=" + user + "&password=" + password);
 
