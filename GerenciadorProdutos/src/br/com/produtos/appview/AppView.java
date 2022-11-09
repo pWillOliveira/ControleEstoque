@@ -35,30 +35,14 @@ public class AppView extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JTextField txtNome;
 	private JTextField txtFornecedor;
+	private JTextField txtCodigo;
 	private static JTable tabelaProdutos;
 	private JButton btnListar;
-	private JScrollPane scrollPane;
-	private JTextField txtCodigo;
 	private JButton btnDeletar;
+	private JScrollPane scrollPane;
 	private static JLabel lblData;
 	private static JLabel lblHora;
-
-	/**
-	 * Executa a aplicação.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					AppView frame = new AppView();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
+	
 	/**
 	 * Cria o Frame.
 	 */
