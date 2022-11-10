@@ -112,7 +112,7 @@ public class AppView extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				if (txtNome.getText() == null || txtNome.getText().trim().equals("") || txtFornecedor.getText() == null
 						|| txtFornecedor.getText().trim().equals("")) {
-					JOptionPane.showMessageDialog(null, "Nome do Produto e Fornecedor devem ser preenchidos.",
+					JOptionPane.showMessageDialog(null, "Preencha todos os campos para cadastrar.",
 							"Erro ao Cadastrar", JOptionPane.ERROR_MESSAGE);
 
 				} else {
