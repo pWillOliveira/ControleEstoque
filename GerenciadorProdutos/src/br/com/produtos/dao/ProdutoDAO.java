@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
 import javax.swing.JOptionPane;
 import br.com.produtos.model.Produto;
 
@@ -17,7 +16,7 @@ public class ProdutoDAO {
 	ArrayList<Produto> lista = new ArrayList<>();
 
 	public void cadastrarProduto(Produto objproduto) {
-		final String query = "insert into produtos (nomeprodutos, fornecedorprodutos) values (?,?)";
+		final String query = "insert into produtos (nome, fornecedor, quantidade, preco) values (?,?,?,?)";
 		conn = new ConexaoDAO().conectaBD();
 
 		try {
@@ -25,16 +24,18 @@ public class ProdutoDAO {
 			pstm = conn.prepareStatement(query);
 			pstm.setString(1, objproduto.getNome());
 			pstm.setString(2, objproduto.getFornecedor());
+			pstm.setInt(3, objproduto.getQuantidade());
+			pstm.setDouble(4, objproduto.getPreco());
 
 			pstm.execute();
 			pstm.close();
 			conn.close();
 
+			JOptionPane.showMessageDialog(null, "Produto cadastrado na base de dados.", "Produto Cadastrado",
+					JOptionPane.INFORMATION_MESSAGE);
 		} catch (SQLException erro) {
 			JOptionPane.showMessageDialog(null, "ProdutoDAO Cadastrar" + erro);
 		}
-		JOptionPane.showMessageDialog(null, "Produto cadastrado na base de dados.", "Produto Cadastrado",
-				JOptionPane.INFORMATION_MESSAGE);
 	}
 
 	public ArrayList<Produto> pesquisarProduto() {
@@ -46,10 +47,13 @@ public class ProdutoDAO {
 			rs = pstm.executeQuery();
 
 			while (rs.next()) {
+
 				Produto objproduto = new Produto();
-				objproduto.setIdproduto(rs.getInt("idprodutos"));
-				objproduto.setNome(rs.getString("nomeprodutos"));
-				objproduto.setFornecedor(rs.getString("fornecedorprodutos"));
+				objproduto.setIdproduto(rs.getInt("id"));
+				objproduto.setNome(rs.getString("nome"));
+				objproduto.setFornecedor(rs.getString("fornecedor"));
+				objproduto.setQuantidade(rs.getInt("quantidade"));
+				objproduto.setPreco(rs.getDouble("preco"));
 
 				lista.add(objproduto);
 			}
@@ -63,7 +67,7 @@ public class ProdutoDAO {
 	}
 
 	public void alterarProduto(Produto objproduto) {
-		final String query = "update produtos set nomeprodutos = ?, fornecedorprodutos = ? where idprodutos = ?";
+		final String query = "update produtos set nome = ?, fornecedor = ?, quantidade = ?, preco = ? where id = ?";
 		conn = new ConexaoDAO().conectaBD();
 
 		try {
@@ -71,21 +75,24 @@ public class ProdutoDAO {
 			pstm = conn.prepareStatement(query);
 			pstm.setString(1, objproduto.getNome());
 			pstm.setString(2, objproduto.getFornecedor());
-			pstm.setInt(3, objproduto.getIdproduto());
+			pstm.setInt(3, objproduto.getQuantidade());
+			pstm.setDouble(4, objproduto.getPreco());
+			pstm.setInt(5, objproduto.getIdproduto());
 
 			pstm.execute();
 			pstm.close();
 			conn.close();
 
+			JOptionPane.showMessageDialog(null, "Produto alterado na base de dados.", "Produto Alterado",
+					JOptionPane.INFORMATION_MESSAGE);
+
 		} catch (SQLException erro) {
 			JOptionPane.showMessageDialog(null, "ProdutoDAO Alterar" + erro);
 		}
-		JOptionPane.showMessageDialog(null, "Produto alterado na base de dados.", "Produto Alterado",
-				JOptionPane.INFORMATION_MESSAGE);
 	}
 
 	public void deletarProduto(Produto objproduto) {
-		final String query = "delete from produtos where idprodutos = ?";
+		final String query = "delete from produtos where id = ?";
 		conn = new ConexaoDAO().conectaBD();
 
 		try {
@@ -97,11 +104,11 @@ public class ProdutoDAO {
 			pstm.close();
 			conn.close();
 
+			JOptionPane.showMessageDialog(null, "Produto excluído da base de dados.", "Produto Excluído",
+					JOptionPane.INFORMATION_MESSAGE);
 		} catch (SQLException erro) {
 			JOptionPane.showMessageDialog(null, "ProdutoDAO Excluir" + erro);
 		}
-		JOptionPane.showMessageDialog(null, "Produto excluído da base de dados.", "Produto Excluído",
-				JOptionPane.INFORMATION_MESSAGE);
 	}
 
 }

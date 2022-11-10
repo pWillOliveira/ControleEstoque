@@ -1,9 +1,14 @@
 package br.com.produtos.model;
 
+
 public class Produto {
 
 	private String nome, fornecedor;
+	private double preco;
 	private int idproduto;
+	private int quantidade;
+
+	
 
 	public String getNome() {
 		return nome;
@@ -28,5 +33,23 @@ public class Produto {
 	public void setIdproduto(int idproduto) {
 		this.idproduto = idproduto;
 	}
+
+	public int getQuantidade() {
+		return quantidade;
+	}
+
+	public void setQuantidade(int quantidade) {
+		this.quantidade = quantidade;
+	}
+
+	public double getPreco() {
+		return preco;
+	}
+
+	public void setPreco(double preco) {
+		this.preco = preco;
+	}
+
+
 
 }

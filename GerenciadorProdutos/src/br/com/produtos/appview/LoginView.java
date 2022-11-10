@@ -20,12 +20,17 @@ import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.awt.event.ActionEvent;
+import javax.swing.JPasswordField;
 
 public class LoginView extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField txtUsuario;
-	private JTextField txtSenha;
+	private JPasswordField txtSenha;
 
 	/**
 	 * Inicia a janela de Login.
@@ -79,13 +84,14 @@ public class LoginView extends JFrame {
 		contentPane.add(txtUsuario);
 		txtUsuario.setColumns(10);
 
-		txtSenha = new JTextField();
+		txtSenha = new JPasswordField();
 		txtSenha.setBounds(152, 180, 131, 20);
 		contentPane.add(txtSenha);
 		txtSenha.setColumns(10);
 
 		JButton btnEntrar = new JButton("Entrar");
 		btnEntrar.addActionListener(new ActionListener() {
+			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent e) {
 				try {
 					String nomeusuario, senhausuario;
@@ -102,6 +108,8 @@ public class LoginView extends JFrame {
 					if (rsusuariodao.next()) {
 						AppView objappview = new AppView();
 						objappview.setVisible(true);
+						objappview.setAlwaysOnTop(true);
+						objappview.setAlwaysOnTop(false);
 						dispose();
 						
 					} else {
