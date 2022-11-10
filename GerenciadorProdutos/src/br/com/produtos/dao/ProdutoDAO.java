@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import br.com.produtos.model.Produto;
 
-//Classe de conexão com o MySQL
+//Classe de conexão do objeto com o MySQL
 public class ProdutoDAO {
 
 	Connection conn;
@@ -29,6 +29,7 @@ public class ProdutoDAO {
 
 			pstm.execute();
 			pstm.close();
+			conn.close();
 
 		} catch (SQLException erro) {
 			JOptionPane.showMessageDialog(null, "ProdutoDAO Cadastrar" + erro);
@@ -53,6 +54,8 @@ public class ProdutoDAO {
 
 				lista.add(objproduto);
 			}
+			pstm.close();
+			conn.close();
 		} catch (SQLException erro) {
 			JOptionPane.showMessageDialog(null, "ProdutoDAO Pesquisar" + erro);
 		}
@@ -73,6 +76,7 @@ public class ProdutoDAO {
 
 			pstm.execute();
 			pstm.close();
+			conn.close();
 
 		} catch (SQLException erro) {
 			JOptionPane.showMessageDialog(null, "ProdutoDAO Alterar" + erro);
@@ -92,6 +96,7 @@ public class ProdutoDAO {
 
 			pstm.execute();
 			pstm.close();
+			conn.close();
 
 		} catch (SQLException erro) {
 			JOptionPane.showMessageDialog(null, "ProdutoDAO Excluir" + erro);

@@ -42,7 +42,7 @@ public class AppView extends JFrame {
 	private JScrollPane scrollPane;
 	private static JLabel lblData;
 	private static JLabel lblHora;
-	
+
 	/**
 	 * Cria o Frame.
 	 */
