@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import br.com.produtos.model.Produto;
 
-//Classe de conexão do objeto com o MySQL
 public class ProdutoDAO {
 
 	Connection conn;
