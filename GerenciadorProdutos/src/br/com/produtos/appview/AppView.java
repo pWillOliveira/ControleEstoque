@@ -111,8 +111,10 @@ public class AppView extends JFrame {
 		btnCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (txtNome.getText() == null || txtNome.getText().trim().equals("") || txtFornecedor.getText() == null
-						|| txtFornecedor.getText().trim().equals("")) {
-					JOptionPane.showMessageDialog(null, "Preencha todos os campos para cadastrar.",
+						|| txtFornecedor.getText().trim().equals("") || txtQtd.getText() == null
+						|| txtQtd.getText().trim().equals("") || txtPreco.getText() == null
+						|| txtPreco.getText().trim().equals("")) {
+					JOptionPane.showMessageDialog(null, "Preencha todos os campos para cadastrar um produto.",
 							"Erro ao Cadastrar", JOptionPane.ERROR_MESSAGE);
 
 				} else {
@@ -192,10 +194,17 @@ public class AppView extends JFrame {
 					JOptionPane.showMessageDialog(null, "Carregue os campos antes para alterar um produto.",
 							"Erro ao Alterar", JOptionPane.ERROR_MESSAGE);
 
+				} else if (txtNome.getText() == null || txtNome.getText().trim().equals("")
+						|| txtFornecedor.getText() == null || txtFornecedor.getText().trim().equals("")
+						|| txtQtd.getText() == null || txtQtd.getText().trim().equals("") || txtPreco.getText() == null
+						|| txtPreco.getText().trim().equals("")) {
+					JOptionPane.showMessageDialog(null, "Todos os campos devem ser preenchidos para alterar.",
+							"Erro ao Alterar", JOptionPane.ERROR_MESSAGE);
 				} else {
 					AlterarProduto();
 					ListarValores();
 					LimparCampos();
+
 				}
 			}
 
@@ -357,5 +366,4 @@ public class AppView extends JFrame {
 			JOptionPane.showMessageDialog(null, "Listar Valores: " + erro);
 		}
 	}
-
 }
