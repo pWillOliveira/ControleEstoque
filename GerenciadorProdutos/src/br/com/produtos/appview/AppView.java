@@ -120,7 +120,7 @@ public class AppView extends JFrame {
 				} else {
 					CadastrarProdutos();
 					ListarValores();
-					LimparCampos();
+					//LimparCampos();
 				}
 			}
 		});
