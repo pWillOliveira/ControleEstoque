@@ -16,7 +16,7 @@ public class ProdutoDAO {
 	ArrayList<Produto> lista = new ArrayList<>();
 
 	public void cadastrarProduto(Produto objproduto) {
-		final String query = "insert into produtos (nome, fornecedor, quantidade, preco) values (?,?,?,?)";
+		final String query = "insert into produtos (nome, fornecedor, quantidade, preco) " + "values (?,?,?,?)";
 		conn = new ConexaoDAO().conectaBD();
 
 		try {
@@ -67,7 +67,8 @@ public class ProdutoDAO {
 	}
 
 	public void alterarProduto(Produto objproduto) {
-		final String query = "update produtos set nome = ?, fornecedor = ?, quantidade = ?, preco = ? where id = ?";
+		final String query = "update produtos set nome = ?,"
+				+ " fornecedor = ?, quantidade = ?, preco = ? where id = ?";
 		conn = new ConexaoDAO().conectaBD();
 
 		try {
