@@ -24,7 +24,7 @@ public class UsuarioDAO {
 			
 			ResultSet rs = pstm.executeQuery();
 			return rs;
-
+				
 		} catch (SQLException erro) {
 			JOptionPane.showMessageDialog(null, "LoginUsuario" + erro);
 			return null;

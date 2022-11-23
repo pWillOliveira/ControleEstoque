@@ -66,16 +66,16 @@ public class LoginView extends JFrame {
 		lblNewLabel_1.setBounds(70, 11, 284, 32);
 		contentPane.add(lblNewLabel_1);
 
-		JLabel lblNewLabel = new JLabel("Usuário:");
+		JLabel lblNewLabel = new JLabel("USUARIO:");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblNewLabel.setBounds(152, 91, 53, 13);
+		lblNewLabel.setFont(new Font("Arial", Font.PLAIN, 12));
+		lblNewLabel.setBounds(152, 91, 131, 13);
 		contentPane.add(lblNewLabel);
 
-		JLabel lblNewLabel_2 = new JLabel("Senha:");
+		JLabel lblNewLabel_2 = new JLabel("SENHA:");
 		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblNewLabel_2.setBounds(152, 156, 45, 13);
+		lblNewLabel_2.setFont(new Font("Arial", Font.PLAIN, 12));
+		lblNewLabel_2.setBounds(152, 156, 131, 13);
 		contentPane.add(lblNewLabel_2);
 
 		txtUsuario = new JTextField();
@@ -110,6 +110,7 @@ public class LoginView extends JFrame {
 						objappview.setVisible(true);
 						objappview.setAlwaysOnTop(true);
 						objappview.setAlwaysOnTop(false);
+						setVisible(false);
 						dispose();
 						
 					} else {

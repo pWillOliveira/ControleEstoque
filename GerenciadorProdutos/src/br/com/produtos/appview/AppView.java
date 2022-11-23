@@ -20,12 +20,17 @@ import javax.swing.JTable;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 import java.awt.Color;
+import java.awt.Desktop;
 import java.awt.Font;
 import javax.swing.UIManager;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.net.URL;
 import java.text.DecimalFormat;
 import javax.swing.ListSelectionModel;
+import javax.swing.JMenuBar;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
 
 public class AppView extends JFrame {
 
@@ -44,6 +49,10 @@ public class AppView extends JFrame {
 	private static JLabel lblHora;
 	private JTextField txtQtd;
 	private JTextField txtPreco;
+	private JMenu mnNewMenu;
+	private JMenuItem mntmNewMenuItem;
+	private JMenu mnNewMenu_1;
+	private JMenuItem mntmNewMenuItem_1;
 
 	/**
 	 * Cria o Frame.
@@ -53,7 +62,7 @@ public class AppView extends JFrame {
 
 		setTitle("Controle de Estoque");
 		setAutoRequestFocus(false);
-		setBounds(100, 100, 600, 500);
+		setBounds(100, 100, 600, 540);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
 
@@ -63,7 +72,7 @@ public class AppView extends JFrame {
 		lblData.setFont(new Font("Arial", Font.BOLD, 12));
 		lblData.setForeground(new Color(0, 0, 128));
 		lblData.setHorizontalAlignment(SwingConstants.CENTER);
-		lblData.setBounds(451, 11, 67, 14);
+		lblData.setBounds(451, 27, 67, 14);
 		getContentPane().add(lblData);
 
 		lblHora = new JLabel("00:00:00");
@@ -71,7 +80,7 @@ public class AppView extends JFrame {
 		lblHora.setFont(new Font("Arial", Font.BOLD, 12));
 		lblHora.setHorizontalAlignment(SwingConstants.CENTER);
 		lblHora.setForeground(new Color(0, 0, 128));
-		lblHora.setBounds(515, 11, 59, 14);
+		lblHora.setBounds(515, 27, 59, 14);
 		getContentPane().add(lblHora);
 
 		// Criando o Timer para atualização da hora em tempo real.
@@ -90,20 +99,20 @@ public class AppView extends JFrame {
 
 		// Demais Labels e Botões
 		JLabel lblNewLabel = new JLabel("Nome do Produto:");
-		lblNewLabel.setBounds(10, 67, 130, 14);
+		lblNewLabel.setBounds(10, 83, 130, 14);
 		getContentPane().add(lblNewLabel);
 
 		txtNome = new JTextField();
-		txtNome.setBounds(10, 92, 230, 20);
+		txtNome.setBounds(10, 108, 230, 20);
 		getContentPane().add(txtNome);
 		txtNome.setColumns(10);
 
 		JLabel lblNewLabel_1 = new JLabel("Fornecedor:");
-		lblNewLabel_1.setBounds(250, 67, 86, 14);
+		lblNewLabel_1.setBounds(250, 83, 86, 14);
 		getContentPane().add(lblNewLabel_1);
 
 		txtFornecedor = new JTextField();
-		txtFornecedor.setBounds(250, 92, 230, 20);
+		txtFornecedor.setBounds(250, 108, 230, 20);
 		getContentPane().add(txtFornecedor);
 		txtFornecedor.setColumns(10);
 
@@ -120,15 +129,15 @@ public class AppView extends JFrame {
 				} else {
 					CadastrarProdutos();
 					ListarValores();
-					//LimparCampos();
+					LimparCampos();
 				}
 			}
 		});
-		btnCadastrar.setBounds(10, 179, 105, 23);
+		btnCadastrar.setBounds(10, 195, 105, 23);
 		getContentPane().add(btnCadastrar);
 
 		scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 213, 564, 195);
+		scrollPane.setBounds(10, 229, 564, 195);
 		getContentPane().add(scrollPane);
 
 		tabelaProdutos = new JTable();
@@ -159,16 +168,16 @@ public class AppView extends JFrame {
 				LimparCampos();
 			}
 		});
-		btnListar.setBounds(323, 179, 124, 23);
+		btnListar.setBounds(323, 195, 124, 23);
 		getContentPane().add(btnListar);
 
 		JLabel lblNewLabel_2 = new JLabel("Código:");
-		lblNewLabel_2.setBounds(10, 11, 46, 14);
+		lblNewLabel_2.setBounds(10, 27, 46, 14);
 		getContentPane().add(lblNewLabel_2);
 
 		txtCodigo = new JTextField();
 		txtCodigo.setEditable(false);
-		txtCodigo.setBounds(10, 36, 86, 20);
+		txtCodigo.setBounds(10, 52, 86, 20);
 		getContentPane().add(txtCodigo);
 		txtCodigo.setColumns(10);
 
@@ -184,7 +193,7 @@ public class AppView extends JFrame {
 				}
 			}
 		});
-		btnCarregar.setBounds(10, 419, 148, 23);
+		btnCarregar.setBounds(10, 435, 148, 23);
 		getContentPane().add(btnCarregar);
 
 		JButton btnAlterar = new JButton("Alterar");
@@ -209,7 +218,7 @@ public class AppView extends JFrame {
 			}
 
 		});
-		btnAlterar.setBounds(125, 179, 89, 23);
+		btnAlterar.setBounds(125, 195, 89, 23);
 		getContentPane().add(btnAlterar);
 
 		btnDeletar = new JButton("Deletar");
@@ -226,7 +235,7 @@ public class AppView extends JFrame {
 				}
 			}
 		});
-		btnDeletar.setBounds(224, 179, 89, 23);
+		btnDeletar.setBounds(224, 195, 89, 23);
 		getContentPane().add(btnDeletar);
 
 		txtQtd = new JTextField();
@@ -240,11 +249,11 @@ public class AppView extends JFrame {
 			}
 		});
 		txtQtd.setColumns(10);
-		txtQtd.setBounds(10, 148, 110, 20);
+		txtQtd.setBounds(10, 164, 110, 20);
 		getContentPane().add(txtQtd);
 
 		JLabel lblNewLabel_3 = new JLabel("Quantidade:");
-		lblNewLabel_3.setBounds(10, 123, 86, 14);
+		lblNewLabel_3.setBounds(10, 139, 86, 14);
 		getContentPane().add(lblNewLabel_3);
 
 		txtPreco = new JTextField();
@@ -258,12 +267,37 @@ public class AppView extends JFrame {
 			}
 		});
 		txtPreco.setColumns(10);
-		txtPreco.setBounds(250, 148, 110, 20);
+		txtPreco.setBounds(250, 164, 110, 20);
 		getContentPane().add(txtPreco);
 
 		JLabel lblNewLabel_4 = new JLabel("Preço:");
-		lblNewLabel_4.setBounds(250, 123, 63, 14);
+		lblNewLabel_4.setBounds(250, 139, 63, 14);
 		getContentPane().add(lblNewLabel_4);
+
+		JMenuBar menuBar = new JMenuBar();
+		menuBar.setBounds(0, 0, 584, 22);
+		getContentPane().add(menuBar);
+
+		mnNewMenu = new JMenu("Arquivo");
+		menuBar.add(mnNewMenu);
+
+		mntmNewMenuItem = new JMenuItem("Sair");
+		mnNewMenu.add(mntmNewMenuItem);
+
+		mnNewMenu_1 = new JMenu("Ajuda");
+		menuBar.add(mnNewMenu_1);
+
+		mntmNewMenuItem_1 = new JMenuItem("Sobre");
+		mntmNewMenuItem_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					Desktop.getDesktop().browse(new URL("https://github.com/pWillOliveira/GerenciadorProdutos/blob/master/README.md").toURI());
+				} catch (Exception error) {
+
+				}
+			}
+		});
+		mnNewMenu_1.add(mntmNewMenuItem_1);
 
 	}
 
